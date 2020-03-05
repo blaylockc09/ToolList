@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <!--
+      JavaScript 6th Edition
+      Chapter 3
+      Hands-on Project 3-4
+
+      Author: Chris Blaylock  
+      Date:   02/13/2020
+
+      Filename: index.htm
+   -->
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+   <title>Hands-on Project 3-4</title>
+   <link rel="stylesheet" href="styles.css" />
+   <script src="modernizr.custom.05819.js"></script>
+</head>
+
+<body>
+   <header>
+      <h1>
+         Hands-on Project 3-4
+      </h1>
+   </header>
+
+   <article>
+      <div id="results">
+          <ul>
+             <li id="item1"></li>
+             <li id="item2"></li>
+             <li id="item3"></li>
+             <li id="item4"></li>
+             <li id="item5"></li>
+          </ul>
+          <p id="resultsExpl"></p>
+      </div>
+      <form>
+          <fieldset>
+            <label for="toolBox" id="placeLabel">
+              Type the name of a tool, then click Submit:
+            </label>
+            <input type="text" id="toolBox" />
+          </fieldset>
+          <fieldset>
+            <button type="button" onclick="processInput" id="button">Submit</button>
+          </fieldset>
+      </form>
+   </article>
+   <script>
+      var i = 1
+      var listItem = ""
+     /*  process the input into the toolBox field and write it to the results list */
+      function processInput() {
+         if (i <= 5) {
+            var listItem = ("item" + i)
+            var toolBox = document.getElementById("toolBox").value
+            document.getElementById(listItem).innerHTML = toolBox
+            /* if the iteration 'i' is equal to 5 then write 'Thanks for your suggestions.' in the resultsExpl field */
+            if (i == 5){
+               document.getElementById("resultsExpl").innerHTML = "Thanks for your suggestions."
+            }
+            /* add 1 to the iteration to count to 5 */
+            i = i + 1 
+         }
+            
+      }
+      /* create a var for the button */
+      var submitButton = document.getElementById("button");
+      /* create event listeners for the button click to call the function */
+      if (submitButton.addEventListener) { 
+          submitButton.addEventListener("click", processInput,
+      false);
+    } else if (submitButton.attachEvent) {
+         submitButton.attachEvent("onclick", processInput); 
+   }
+   </script>
+</body>
+</html>
